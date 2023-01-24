@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:ticket_app/notifiers/nav_bar_notifier.dart';
+import 'package:ticket_app/notifiers/ticket_notifier.dart';
 import 'package:ticket_app/widgets/app_bar.dart';
 import 'package:ticket_app/widgets/grid_builder.dart';
 import '../notifiers/chart_option_notifier.dart';
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   margin:
                       const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                   child: TabBar(
+                    onTap: (value) => chartOptionNotifier.selectedTab = value,
                     padding: const EdgeInsets.only(left: 0),
                     indicatorWeight: 3.0,
                     unselectedLabelColor: Colors.grey.shade700,
@@ -149,10 +151,10 @@ class ChartBuilderPage extends StatefulWidget {
 
 class _ChartBuilderPageState extends State<ChartBuilderPage> {
   final List<ChartData> chartData = [
-    ChartData('China', 12, 10, 14, 20),
-    ChartData('USA', 14, 11, 18, 23),
-    ChartData('UK', 16, 10, 15, 20),
-    ChartData('Brazil', 18, 16, 18, 24)
+    ChartData('Day', 12, 10, 14, 20),
+    ChartData('Week', 14, 11, 18, 23),
+    ChartData('Month', 16, 10, 15, 20),
+    ChartData('Year', 18, 16, 18, 24)
   ];
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ticket_app/notifiers/chart_option_notifier.dart';
 import 'package:ticket_app/notifiers/nav_bar_notifier.dart';
+import 'package:ticket_app/notifiers/ticket_notifier.dart';
 import 'package:ticket_app/screens/home_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ChartOptionNotifier>(
             create: (_) => ChartOptionNotifier()),
         ChangeNotifierProvider<NavBarNotifier>(create: (_) => NavBarNotifier()),
+        ChangeNotifierProvider<TicketNotifier>(create: (_) => TicketNotifier()),
       ],
       child: MaterialApp(
         title: 'Ticket App',

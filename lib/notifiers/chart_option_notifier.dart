@@ -21,4 +21,14 @@ class ChartOptionNotifier extends ChangeNotifier {
     _isGridView = val;
     notifyListeners();
   }
+
+  // for selected tab option
+  int _selectedTab = 0;
+
+  int get selectedTab => _selectedTab;
+
+  set selectedTab(int value) {
+    _selectedTab = value;
+    notifyListeners();
+  }
 }
