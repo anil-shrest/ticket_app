@@ -53,65 +53,62 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         letterSpacing: 0.1,
                       ),
                 ),
-                ChangeNotifierProvider(
-                  create: (_) => ChartOptionNotifier(),
-                  child: Consumer<ChartOptionNotifier>(
-                    builder: (context, chartOptionNotifier, child) => Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            chartOptionNotifier.isChartView =
-                                !chartOptionNotifier.isChartView;
-                            chartOptionNotifier.isGridView = false;
-                          },
-                          child: Container(
-                            height: 33,
-                            width: 52,
-                            decoration: BoxDecoration(
-                              color: chartOptionNotifier.isChartView
-                                  ? Colors.blueAccent
-                                  : Colors.white,
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(6),
-                                bottomLeft: Radius.circular(6),
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.list,
-                              color: chartOptionNotifier.isChartView
-                                  ? Colors.white
-                                  : Colors.black,
+                Consumer<ChartOptionNotifier>(
+                  builder: (context, chartOptionNotifier, child) => Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          chartOptionNotifier.isChartView =
+                              !chartOptionNotifier.isChartView;
+                          chartOptionNotifier.isGridView = false;
+                        },
+                        child: Container(
+                          height: 33,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            color: chartOptionNotifier.isChartView
+                                ? Colors.blueAccent
+                                : Colors.white,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(6),
+                              bottomLeft: Radius.circular(6),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            chartOptionNotifier.isGridView =
-                                !chartOptionNotifier.isGridView;
-                            chartOptionNotifier.isChartView = false;
-                          },
-                          child: Container(
-                            height: 33,
-                            width: 52,
-                            decoration: BoxDecoration(
-                              color: chartOptionNotifier.isGridView
-                                  ? Colors.blueAccent
-                                  : Colors.white,
-                              borderRadius: const BorderRadius.only(
-                                topRight: Radius.circular(6),
-                                bottomRight: Radius.circular(6),
-                              ),
-                            ),
-                            child: Icon(
-                              Icons.show_chart,
-                              color: chartOptionNotifier.isGridView
-                                  ? Colors.white
-                                  : Colors.black,
-                            ),
+                          child: Icon(
+                            Icons.list,
+                            color: chartOptionNotifier.isChartView
+                                ? Colors.white
+                                : Colors.black,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          chartOptionNotifier.isGridView =
+                              !chartOptionNotifier.isGridView;
+                          chartOptionNotifier.isChartView = false;
+                        },
+                        child: Container(
+                          height: 33,
+                          width: 52,
+                          decoration: BoxDecoration(
+                            color: chartOptionNotifier.isGridView
+                                ? Colors.blueAccent
+                                : Colors.white,
+                            borderRadius: const BorderRadius.only(
+                              topRight: Radius.circular(6),
+                              bottomRight: Radius.circular(6),
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.show_chart,
+                            color: chartOptionNotifier.isGridView
+                                ? Colors.white
+                                : Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

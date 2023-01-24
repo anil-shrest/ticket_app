@@ -20,9 +20,11 @@ class _GridBuilderPageState extends State<GridBuilderPage> {
             height: 200,
             width: 200,
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Icon(Icons.airplane_ticket_outlined),
                 Text('Total Tickets'),

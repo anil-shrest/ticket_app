@@ -41,72 +41,77 @@ class _HomeScreenState extends State<HomeScreen> {
         drawer: const Drawer(
           child: Center(child: Text('My Ticket App')),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                margin:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                child: TabBar(
-                  padding: const EdgeInsets.only(left: 0),
-                  indicatorWeight: 3.0,
-                  unselectedLabelColor: Colors.grey.shade700,
-                  indicatorColor: Colors.red,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8), // Creates border
-                    color: Colors.blueGrey,
+        body: Consumer<ChartOptionNotifier>(
+          builder: (context, chartOptionNotifier, child) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade300,
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  tabs: const [
-                    Tab(
-                      icon: Text('Day'),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  child: TabBar(
+                    padding: const EdgeInsets.only(left: 0),
+                    indicatorWeight: 3.0,
+                    unselectedLabelColor: Colors.grey.shade700,
+                    indicatorColor: Colors.red,
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8), // Creates border
+                      color: Colors.blueGrey,
                     ),
-                    Tab(
-                      icon: Text('Week'),
-                    ),
-                    Tab(
-                      icon: Text('Month'),
-                    ),
-                    Tab(
-                      icon: Text('Year'),
-                    ),
-                  ],
+                    tabs: const [
+                      Tab(
+                        icon: Text('Day'),
+                      ),
+                      Tab(
+                        icon: Text('Week'),
+                      ),
+                      Tab(
+                        icon: Text('Month'),
+                      ),
+                      Tab(
+                        icon: Text('Year'),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              ChangeNotifierProvider(
-                create: (_) => ChartOptionNotifier(),
-                child: Consumer<ChartOptionNotifier>(
-                  builder: (context, chartOptionNotifier, child) => Expanded(
-                    child: TabBarView(
-                      children: chartOptionNotifier.isChartView != true
-                          ? [
-                              _MyHomePage(),
-                              _MyHomePage(),
-                              _MyHomePage(),
-                              _MyHomePage(),
-                            ]
-                          : [
+                chartOptionNotifier.isGridView == true
+                    ? const Expanded(
+                        child: TabBarView(
+                          children: [
+                            ChartBuilderPage(),
+                            ChartBuilderPage(),
+                            ChartBuilderPage(),
+                            ChartBuilderPage(),
+                          ],
+                        ),
+                      )
+                    : const Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(15),
+                          child: TabBarView(
+                            children: [
                               GridBuilderPage(),
                               GridBuilderPage(),
                               GridBuilderPage(),
                               GridBuilderPage(),
                             ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                          ),
+                        ),
+                      ),
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: ChangeNotifierProvider<NavBarNotifier>(
           create: (_) => NavBarNotifier(),
           child: Consumer<NavBarNotifier>(
             builder: (context, navBarNotifier, child) => BottomNavigationBar(
+              selectedFontSize: 12,
               unselectedItemColor: Colors.white,
               backgroundColor: Colors.blueAccent,
               items: const <BottomNavigationBarItem>[
@@ -115,12 +120,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.business),
-                  label: 'Business',
+                  icon: Icon(Icons.airplane_ticket_outlined),
+                  label: 'Tickets',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.school),
-                  label: 'School',
+                  icon: Icon(Icons.person),
+                  label: 'Profile',
                 ),
               ],
               currentIndex: navBarNotifier.selectedIndex,
@@ -135,14 +140,14 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 // for test
-class _MyHomePage extends StatefulWidget {
-  const _MyHomePage({Key? key}) : super(key: key);
+class ChartBuilderPage extends StatefulWidget {
+  const ChartBuilderPage({Key? key}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _ChartBuilderPageState createState() => _ChartBuilderPageState();
 }
 
-class _MyHomePageState extends State<_MyHomePage> {
+class _ChartBuilderPageState extends State<ChartBuilderPage> {
   final List<ChartData> chartData = [
     ChartData('China', 12, 10, 14, 20),
     ChartData('USA', 14, 11, 18, 23),
